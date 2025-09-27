@@ -11,6 +11,21 @@ CSV_PATH = Path(__file__).parent / "tasks.csv"
 # 想定カラム名（小文字で管理）
 REQUIRED = ["id", "task", "preference_type", "preference_order"]
 
+origins = [
+    "http://localhost:5173",   # Vite / Vue / React dev server
+    "http://127.0.0.1:5173",
+    # ngrok の公開URLもここに追加すると便利
+    # 例: "https://1234-56-78-90-123.ngrok-free.app"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,        # 許可するオリジン
+    allow_credentials=True,
+    allow_methods=["*"],          # GET, POST, PUT など全許可
+    allow_headers=["*"],          # 全てのヘッダを許可
+)
+
 def normalize_header(name: str) -> str:
     # BOM 対策 + 前後空白 + 全角/半角のごく基本だけ処理
     return (
