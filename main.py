@@ -4,6 +4,7 @@ from fastapi.responses import JSONResponse
 import csv
 from pathlib import Path
 from typing import List, Dict, Any
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 CSV_PATH = Path(__file__).parent / "tasks.csv"
